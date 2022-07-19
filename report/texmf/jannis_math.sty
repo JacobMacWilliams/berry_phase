@@ -1,0 +1,113 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{math_useful_commands}[2021/11/07 math_useful_commands package]
+
+\RequirePackage{xparse}
+
+% the following operators, or their shortcuts (see below) should be used
+% instead of manually setting braces, ..., they fix some space problems, for
+% example try out
+% \begin{align*}
+%   &\abs{+x}\\
+%   &\abs*{+x}\\
+%   &\left|+x\right|\\
+%   &\cos|\theta|\\
+%   &\cos\left(s^{s^{s^{s}}}\right)\\
+%   &\cos(s^{s^{s^{s}}})\\
+% \end{align*}
+\DeclarePairedDelimiter\Parentheses{\lparen}{\rparen}
+\DeclarePairedDelimiter\Brackets{\lbrack}{\rbrack}
+\DeclarePairedDelimiter\Braces{\lbrace}{\rbrace}
+\DeclarePairedDelimiter\AbsouluteValue{\lvert}{\rvert}
+\DeclarePairedDelimiter\Norm{\lVert}{\rVert}
+\DeclarePairedDelimiter\Bra{\langle}{\rvert}
+\DeclarePairedDelimiter\Ket{\lvert}{\rangle}
+\DeclarePairedDelimiter\BraKet{\langle}{\rangle}
+\DeclarePairedDelimiterX\BraKetTwo[2]{\langle}{\rangle}{%
+  #1\delimsize\vert\mathopen{}#2}
+\DeclarePairedDelimiterX\BraKetThree[3]{\langle}{\rangle}{%
+  #1\delimsize\vert\mathopen{}#2%
+  \delimsize\vert\mathopen{}#3%
+}
+\DeclarePairedDelimiterX\BraKetTwoStar[2]{\langle}{\rangle}{%
+  #1\nonscript\,\delimsize\vert\nonscript\,\mathopen{}#2}
+\DeclarePairedDelimiterX\BraKetThreeStar[3]{\langle}{\rangle}{%
+  #1\nonscript\,\delimsize\vert\nonscript\,\mathopen{}#2\nonscript\,%
+  \delimsize\vert\nonscript\,\mathopen{}#3%
+}
+\DeclarePairedDelimiter\LeftBraceDot{\lbrace}{.}
+\DeclarePairedDelimiter\RightBraceDot{.}{\rbrace}
+\DeclarePairedDelimiterX\SetVerticalLine[2]{\lbrace}{\rbrace}{%
+  #1\nonscript\:\delimsize\vert\allowbreak\nonscript\:\mathopen{}#2}
+\DeclarePairedDelimiterX\SetColon[2]{\lbrace}{\rbrace}{%
+  #1\nonscript\::\allowbreak\nonscript\:\mathopen{}#2}
+% the starred variant add \left and \right (also with the reduced spaces after
+% math operators (if one wants the spaces, just insert \,))
+
+% some missing math operators
+\DeclareMathOperator\tr{tr}
+\DeclareMathOperator\Tr{Tr}
+\DeclareMathOperator\arcsinh{arcsinh}
+\DeclareMathOperator\arccosh{arccosh}
+\DeclareMathOperator\arctanh{arctanh}
+\DeclareMathOperator\sgn{sgn}
+\DeclareMathOperator\diag{diag}
+\DeclareMathOperator\Span{span} % \span is already a primitive command
+\DeclareMathOperator\emptyOperator{}
+
+% proper differential in integrals
+\NewDocumentCommand\diff{om}{%
+\mathop{}\!\mathrm{d}\IfValueTF{#1}{^{#1}\!}{}#2\emptyOperator\!}
+
+
+% now some shortcuts
+
+% paired delimiter (usually everything starred, except for braket it's optional)
+\newcommand\pa[1]{\Parentheses*{#1}}
+\newcommand\bk[1]{\Brackets*{#1}}
+\newcommand\bc[1]{\Braces*{#1}}
+\newcommand\abs[1]{\AbsouluteValue*{#1}}
+\newcommand\norm[1]{\Norm*{#1}}
+\newcommand\lbc[1]{\LeftBraceDot*{#1}}
+\newcommand\rbc[1]{\RightBraceDot*{#1}}
+% The quantikz package already defines bra, ket and braket, therefore Renew and
+% provide if quantikz isn't loaded
+\providecommand\bra{}
+\providecommand\ket{}
+\providecommand\braket{}
+\RenewDocumentCommand\bra{md<>}{\Bra*{#1}\IfValueTF{#2}{_#2}{}}
+\RenewDocumentCommand\ket{md<>}{\Ket*{#1}\IfValueTF{#2}{_#2}{}}
+\RenewDocumentCommand\braket{smood<>}{%
+  \IfBooleanTF{#1}
+  {
+    \IfValueTF{#3}{\IfValueTF{#4}{\BraKetThreeStar*{#2}{#3}{#4}}{\BraKetTwoStar*{#2}{#3}}}%
+    {\BraKet*{#2}}\IfValueTF{#5}{_\IfValueTF{#5}{#5}{#3}}{}%
+  }
+  {
+    \IfValueTF{#3}{\IfValueTF{#4}{\BraKetThree{#2}{#3}{#4}}{\BraKetTwo{#2}{#3}}}%
+    {\BraKet{#2}}\IfValueTF{#5}{_\IfValueTF{#5}{#5}{#3}}{}%
+  }
+}
+\NewDocumentCommand\ketbra{md<>od<>d>>}{%
+  \Ket*{#1}\IfValueTF{#5}{_{\IfValueTF{#2}{#2}{#5}}}{\IfValueTF{#2}{_{#2}}{}}\Bra*{\IfValueTF{#3}{#3}{#1}}%
+  \IfValueTF{#5}{_{\IfValueTF{#4}{#4}{#5}}}{\IfValueTF{#4}{_{#4}}{}}%
+}
+\let\Set\SetVerticalLine  % \let\Set\SetColon as alternative
+\newcommand\set[2]{\Set*{#1}{#2}}
+
+% matrices
+\newcommand\mat[1]{\begin{matrix}#1\end{matrix}}
+\newcommand\matp[1]{\begin{pmatrix}#1\end{pmatrix}}
+\newcommand\matb[1]{\begin{bmatrix}#1\end{vmatrix}}
+\newcommand\matB[1]{\begin{Bmatrix}#1\end{Bmatrix}}
+\newcommand\matv[1]{\begin{vmatrix}#1\end{vmatrix}}
+\newcommand\matV[1]{\begin{Vmatrix}#1\end{Vmatrix}}
+
+% letters
+\newcommand*\dd{\mathrm{d}}
+\newcommand*\pd{\partial}
+\newcommand*\DD{\mathrm{D}}
+\newcommand*\ee{\mathrm{e}}
+
+% miscellaneous
+\newcommand*\up{\uparrow}
+\newcommand*\down{\downarrow}

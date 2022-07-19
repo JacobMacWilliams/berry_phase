@@ -1,0 +1,15 @@
+\beamer@sectionintoc {1}{The Irrelevant Phase}{3}{0}{1}
+\beamer@sectionintoc {2}{The Berry Phase}{5}{0}{2}
+\beamer@subsectionintoc {2}{1}{The Discrete Case}{6}{0}{2}
+\beamer@subsectionintoc {2}{2}{The Continuous Case}{8}{0}{2}
+\beamer@sectionintoc {3}{The Adiabatic Theorem}{18}{0}{3}
+\beamer@subsectionintoc {3}{1}{Statement}{19}{0}{3}
+\beamer@subsectionintoc {3}{2}{Proof}{20}{0}{3}
+\beamer@sectionintoc {4}{Magnetic Moment in a Precessing Field}{24}{0}{4}
+\beamer@subsectionintoc {4}{1}{Defining the System}{25}{0}{4}
+\beamer@subsectionintoc {4}{2}{Calculating the Berry Phase}{26}{0}{4}
+\beamer@sectionintoc {5}{The Aharonov-Bohm Effect}{27}{0}{5}
+\beamer@subsectionintoc {5}{1}{The Electric Effect}{28}{0}{5}
+\beamer@subsectionintoc {5}{2}{The Magnetic Effect}{29}{0}{5}
+\beamer@subsectionintoc {5}{3}{The Berry Phase}{30}{0}{5}
+\beamer@sectionintoc {6}{Outlook}{31}{0}{6}
