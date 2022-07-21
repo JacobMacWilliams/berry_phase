@@ -6,10 +6,27 @@
 \author{Jacob MacWilliams}
 \begin{document}
 
-\section{Introduction}
+\maketitle
+\tableofcontents
 
-For a long period of time in the field of quantum physics it was assumed that the phase of a quantum state was physically irrelevant. The standard argument goes that all measurements in the quantum mechanical realm can be modelled as Hermitian operators, which in turn have a spectral decomposition (that is they can be represented as a linear combination of projectors) which are in turn gauge-invariant with respect to gauge transformation of the type:
-\section{The Irrelevant Phase}
+\newpage
+\section{Introduction \label{sec:intro}}
 
-For a long period 
+It has long been known that the global phase of a quantum state was physically irrelevant. The standard argument goes that all measurements in the quantum mechanical realm can be modelled as Hermitian operators ($\hat{O}$), which in turn can be represented in their spectral decomposition ($\hat{O} = \sum_{i} \omega_{i}\ket{\Psi_i}\bra{\Psi_i}$) which are in turn gauge-invariant with respect to gauge transformation of the type:
+
+\begin{equation*}
+  \mathcal{G}: \mathcal{H} \rightarrow \mathcal{H}^{*} \quad  \ket{\Psi} \mapsto e^{i\alpha(\Psi)}\ket{\Psi}
+\end{equation*}
+
+It would be naive to extrapolate this argument too far and assume that phase is wholly irrelevant to quantum systems. It has been clear since the inception of quantum mechanics that this is not the case, and that the relative phase between two states can plays a crucial role in a system's behaviour. However, perhaps slightly more surprising is that the Hilbert space of a system, itself, shields certain internal phase relations within it from changing under arbitrary gauge transformations. It was Michael Berry in 1983 that discovered that quantum systems transported slowly around a circuit by varying some control parameters $\bm{R}$ exhibit a phase factor which he dubbed the \textit{geometric phase} \cite{Berry1984}. In the same year Barry Simon made the connection between Berry's geometric phase and topology showing that the phase is a result of the geometry of the parameter space \cite{Simon1983}. With this discovery, the quantum world was intimately connected with the worlds of geometry and topology, and the gates to the study of quantum systems through the lens of topology/geometry was opened.\\
+
+This report will focus on only the beginning of this story; that being an introduction and exploration of the geometric phase, now more often called The Berry Phase\footnote{Following Berry's discovery of his self-dubbed geometric phase in 1983 and Simon's consequent generalization further generalizations were made such as the introduction of The Aharonov-Anandan Phase in 1986. As time progressed further connections were made to a variety of phase factors found in other fields of physics. All of these phase factors could be reasonably called geometric phase factors, and using the same term for all of them would not be in of itself incorrect as they are all inherently connected by the same mathematical concepts, but called differently because the various histories of these independent discoveries. So, to avoid confusion I will be using the term Berry Phase, meaning the geometric phase factor discovered by Michael Berry in the context of the quantum physics.}.  In this report I will derive The Berry Phase in a manner inherently intertwined with Simon's insights\ref{sec:SECTION}, exploring its properties \ref{sec:SECTION}, and then going on to detail the theoretical arguments through which Berry unveiled The Berry Phase. In the final section of the body of this report a number of physical systems will be explored in which The Berry Phase arises, during which a numerical solution will be presented showing The Berry Phase arising in a physical model as one would expect.\\
+
+I urge the reader to keep in mind that the relevance of this report derives itself from the importance of the much larger field of topological physics and the role The Berry Phase plays in connecting the quantum realm to the realm of topology. Understanding The Berry Phase in this context provides a natural jumping off point into a much wider world with a whole array of interesting phenomena and insights.
+
+\section{The Berry Phase}
+Lorem Ipsum
+\bibliography{Zotero}
+\bibliographystyle{plainnat}
+
 \end{document}
