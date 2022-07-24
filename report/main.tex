@@ -3,6 +3,8 @@
 \usepackage{stdheader}
 \graphicspath{{../figs/}}
 
+\DeclareMathOperator\Tr{Tr}
+
 \title{The Berry Phase}
 \author{Jacob MacWilliams}
 \begin{document}
@@ -25,9 +27,239 @@ This report will focus on only the beginning of this story; that being an introd
 
 I urge the reader to keep in mind that the relevance of this report derives itself from the importance of the much larger field of topological physics and the role The Berry Phase plays in connecting the quantum realm to the realm of topology. Understanding The Berry Phase in this context provides a natural jumping off point into a much wider world with a whole array of interesting phenomena and insights.
 
-\section{The Berry Phase}
+\section{The Berry Phase\label{sec:the_berry_phase}}
 
-\subsection{The Discrete Case}
+\subsection{The Discrete Case \label{ssec:discrete_case}}
+
+In this section The Berry Phase will be introduced in the discrete case; that is, it will be defined for a Hilbert space ($\mathcal{H}$) with a finite number of states ($N$). \\ 
+
+Before introducing The Berry Phase we first have to define the relative phase between two states ($\ket{\Psi_1}$, $\ket{\Psi_2}$):
+
+  \begin{equation*} \label{eq:relative_phase}
+    \gamma_{1,2} = -arg \braket{\Psi_{1}|\Psi_{2}} \qquad \gamma_{1, 2} \in (-\pi, \pi]
+  \end{equation*}
+
+That being the phase factor of the complex number describing the inner product of the two states with each other. Here the total range of values allowed for the phase is restricted, respecting the equivalence of values outside this range under the relation $\gamma_{0} \equiv \gamma_{1} \Leftrightarrow e^{i\gamma_{0}} = e^{i\gamma_{1}}$. One can quickly show that this phase factor itself is not of any physical relevance as it is expressly dependent on our initial choice of a gauge:
+
+  \begin{equation*}
+    \ket{\Psi_{j}} \rightarrow \exp(i \alpha_{j}) \ket{\Psi_{j}} \quad\quad
+    \exp(-i\gamma_{1,2}) \rightarrow \exp(-i\gamma_{1,2} + i(\alpha_{2} - \alpha_{1}))\\
+  \end{equation*}
+
+Restricting ourselves now, for the sake of simplicity, to a finite Hilbert space (an $N$-state system) one can define the loop/Berry phase\footnote{For all intents and purposes the loop phase is The Berry Phase in the discrete case. However as the loop phase is not the phase as Michael Berry discovered it, and as a number of other phase factors in the literature are inherently the same though they are named differently (as I discussed in the previous footnote) I will refrain from calling the loop phase, The Berry Phase here.} along any given \textit{loop} $c_m=[n_{0}, n_{1}, \ldots, n_{m}, n_{m+1}], \quad n_{0} = n_{m+1}$ (Fig: \ref{fig:berry_loop}):
+
+  \begin{equation*}
+    \gamma_{L}(c_m) = \sum_{i \leq m}\gamma_{n_{i}, n_{i+1}}
+  \end{equation*}
+
+Applying a general gauge transformation ($\mathcal{G}$) to the Hilbert space in which our states live we can utilize the transformation properties of the relative phase (Eq: \ref{eq:relative_phase}) to show that the loop phase over an arbitrary sequence defining the \textit{loop} (i.e. $c_m$) is gauge-invariant.
+
+\begin{flalign*}
+&\textbf{Proof by Induction:}&\\
+&\gamma_{i, j} \rightarrow \gamma_{i, j} + \delta_{i, j} && \delta_{i, j} := (\alpha_i - \alpha_{j}) \; \mathrm{mod} \; 2\pi &\\
+&\gamma_{L}(c_m) \rightarrow \gamma_{L}(c_m) + \delta\gamma(c_m) && \delta\gamma(c_m) := \sum_{i=0}^{m}\delta_{i,i+1} &\\ 
+  & && &\\
+  &c_{0} := [n_0, n_1] && \text{Initial condition}&\\
+  &\qquad \delta_{n_0,n_1} = \delta_{n_0, n_0} = 0 && &\\
+  & && &\\
+  &c_{m} := [n_0, n_1, ..., n_m, n_{m+1}] && \text{Assumption} &\\
+  &\qquad \sum_{i=0}^m \delta_{i, i+1} = 0 &\\
+  & && &\\
+  &c_m \Rightarrow c_{m+1} && \text{Induction Step} &\\
+  &\qquad \sum_{i=0}^{m+1} \delta_{i, i+1} &\\
+  &\qquad = \sum_{i=0}^{m-1}\delta_{i, i + 1} + (\delta_{m, m + 1} + \delta_{m + 1, 0})&\\
+  &\qquad = \sum_{i=0}^{m-1} \delta_{i, i+1} + \delta_{m,0} = \sum_{i=0}^{m}\delta_{i, i + 1} = 0&\\ 
+\end{flalign*}
+Here we see the invariance is ultimately a result of the fact that the following identity holds: $\delta_{i, j} + \delta_{j, k} = \delta_{i, k}$.\\
+
+This result is not altogether surprising, the proof is fairly straightforward, it is however an interesting result that a gauge-invariant quantity can be constructed from the sum of many non-gauge invariant quantities; that is that a number of quantities that by themselves have no physical meaning can combine to create a quantity which does. This de-facto \textit{1=0} result, begs the question if there is not another gauge-invariant formulation of the loop phase which does in fact consist of only a number of gauge-invariant components. This is in fact possible returning to the original representation for the relative phase between two states:
+
+  \begin{align*}
+    e^{-i\gamma_{1,2}} &\propto \braket{\Psi_1|\Psi_2}\\
+    \Rightarrow e^{-i \gamma_L(c_m)} &\propto  
+                         \prod_{i = 0}^{m}  \braket{\Psi_{i}|\Psi_{i+1}} = \Tr \left( \prod_i^m \ket{\Psi_{i}}\bra{\Psi_{i}}\right)
+  \end{align*}
+  Here we see that if we don't extract the relative phase information of each step in the sequence, then we can express the loop phase as the phase component of the trace of the product of a number of projection operators which themselves are gauge-invariant.
+                         
+
+\begin{figure}
+  \includegraphics[width=0.3\textwidth]{berry_loop}
+  \caption{Diagram illustrating the}
+  \label{fig:berry_loop}
+\end{figure}
+
+\subsection{The Continuous Case \label{ssec:continuous_case}}
+
+The most intuitive way to extend The Berry Phase to the continuous regime is by analogy to the discrete case. This will not be conducted in the manner of a formal mathematical proof showing that the same concepts introduced in the discrete case (\ref{ssec:discrete_case}) can be extended to the continuum, for such a proof please refer to \cite{Asboth2016}.\\
+
+In the discrete case there were three fundamental components that were not explicitly identified, though were the key ingredients in allowing us to define The Berry Phase. These were as following:
+
+\begin{itemize}
+  \item The unique identifiers that we used to distinguish the various states within the Hilbert Space from one another. We will call the set of all identifiers the parameter ppace and denote this with $\mathbb{P}$. In the discrete case this set was given by the natural numbers $\mathbb{N}$.
+  \item A unique mapping from the parameter space ($\mathbb{P}$) to the Hilbert space of our quantum system ($\mathcal{H}$). In the discrete case the wave function was given by $\Psi: \mathbb{N} \rightarrow, \quad n \mapsto \ket{\Psi_{n}}$. 
+  \item A path. The path will be denoted with the variable $\mathcal{C}$. In the discrete case this was simply a sequence $[n_0, n_1, \ldots, n_m]$. 
+\end{itemize}
+
+By identifying these components we have broken down the search for The Berry Phase in the continuous regime down to the identification of the appropriate analogues for each of components identified above:
+
+\begin{itemize}
+
+  \item The first of which, the Parameter Space, is implicit in the nature of our question "how does one extend The Berry Phase to continuous Hilbert Spaces?": an n-dimensional continuous parameter space ($\mathcal{M}$).
+  \item The wave function follows, being simply a mapping from the elements of the parameter space to the Hilbert Space: $\Psi: \mathbb{P} \rightarrow \mathcal{H}, \quad \bm{R} \mapsto \ket{\Psi(\bm{R})}$
+
+  \item A path in a continuous space can no longer be described by a finite sequence and this concept must be expanded to the continuous realm:
+  $\mathcal{C}: [0, 1] \rightarrow \mathbb{P}, \quad t \mapsto \bm{R}(t)$
+\end{itemize}
+
+Having translated the components required to define The Berry Phase in the discrete case to the continuous realm it is now possible to postulate an expression for this phase when working with a continuous Hilbert Space. In the discrete case The Berry Phase is given as the sum of the relative phases of each wave function connected by the path $\mathcal{C}$:
+
+\begin{equation*}
+\gamma(\mathcal{C})) = \sum_{i = 0}^{N} \gamma_{n_{i \; \mathrm{mod} \; N}, n_{i+1 \; \mathrm{mod} \; N}} 
+\end{equation*}
+
+In the continuum, since states live infinitely close together we have to consider all terms of the form $\lim_{dt \to 0}\gamma_{\mathcal{C}(t), \mathcal{C}(t + dt)}$ in the \textit{summation}. The continuous \textit{summation} of a given term is realized by an integral of the term divided by the measure of the space over which it is integrated.
+
+\begin{equation}\label{eq:berry_phase_analog}
+  \gamma(\mathcal{C}) = \lim_{dt \to 0} \int_0^1 \gamma_{\mathcal{C}(t), \mathcal{C}(t + dt)} d \bm{t}
+\end{equation}
+
+The main advantage in this analogy is that we can see that The Berry Phase in a continuous Hilbert Space can be understood as the summation of the relative phases of infinitesimally close together states along a closed path.
+
+\begin{tabular}{||l|l|l||}
+\hline
+&\textbf{Discrete} & \textbf{Continuous}\\
+\hline
+\textbf{Parameter Space ($\mathbb{P}$)} & $\mathbb{N}_{0}$ &  $\mathcal{M}$\\
+\hline
+\textbf{Wave Function ($\Psi$)} & $\Psi: \mathbb{P} \rightarrow \mathcal{H}, \quad n \mapsto \ket{\Psi_{n}}$ & $\Psi: \mathbb{P} \rightarrow \mathcal{H}, \quad \bm{R} \mapsto \ket{\Psi(\bm{R})}$ \\
+\hline
+\textbf{Path} ($\mathcal{C}$) &  $[n_{0}, n_{1}, \ldots, n_{N-1}]$ & $\mathcal{C}: [0, 1) \rightarrow \mathcal{M}, \quad t \mapsto \bm{R}(t)$\\
+\hline
+\textbf{Berry Phase} ($\gamma(\mathcal{C}$)) & $\sum_{i = 0}^{N} \gamma_{n_{i \; \mathrm{mod} \; N}, n_{i+1 \; \mathrm{mod} \; N}}$ & $\lim_{dt \to 0} \int_0^1 \gamma_{\mathcal{C}(t), \mathcal{C}(t + dt)} d \bm{t}$\\
+\hline
+\end{tabular}
+
+While the form of the berry phase derived above (Eq: \ref{eq:berry_phase_analog}) is useful for relating it to the compact case it is not yet in its most compact form. Utilizing integration by substitution and the continuity of the parametrization of the path $\mathcal{C}$ and assuming that this path is parametrized with respect to the arc length, we can transform the integral to a closed path integral in the parameter space ($\mathcal{M}$).
+
+\begin{equation*}
+  \gamma(\mathcal{C}) = \lim_{d\bm{r} \to 0} \oint_{\mathcal{C}} \gamma_{\bm{R}, \bm{R}+d\bm{r}} d\bm{R}
+\end{equation*}
+
+For the limit to be appropriately defined in the parameter space we have to assure that we continue to take the relative phase of state pairs lying on the parametrized path:
+
+\begin{align*}
+d\bm{r} &\in M_{R} && M_{R} := \{\bm{r} \in \mathbb{M}|\; \bm{R} + \bm{r} \in \mathcal{C}([0, 1])\}\\
+\end{align*}
+
+The limit can be taken by utilizing how the relative phase information is encoded into the Hilbert Space and taking the Taylor Expansion:
+
+
+  \begin{equation*}
+    \begin{aligned}
+      &\lim_{d\bm{r} \to 0} \exp(-i \gamma_{\bm{R}, \bm{R + d\bm{r}}}) = 
+       \lim_{d\bm{r} \to 0}\frac{\braket{\Psi(\bm{R})|\Psi(\bm{R} + d\bm{r})}}
+       {|\braket{\Psi(\bm{R})|\Psi(\bm{R} +d\bm{r})}|}&\\
+      &1 - i \gamma_{\bm{R}, \bm{R} + d\bm{r}} = \bra{\Psi(\bm{R})}(\ket{\Psi(\bm{R})} + \nabla_{\bm{R}} \ket{\Psi(\bm{R})})&\\
+      &\Rightarrow \gamma_{\bm{R}, \bm{R + d\bm{r}}} =
+       i\braket{\Psi(\bm{R})|\nabla_{\bm{R}}|\Psi(\bm{R})}
+    \end{aligned}
+  \end{equation*}
+
+  with this we arrive at the most compact form of The Berry Phase in a continuous Hilbert Space:
+
+  \begin{equation*}
+    \gamma(\mathcal{C}) = \oint i \braket{\Psi(\bm{R})|\nabla_{\bm{R}}|\Psi(\bm{R})} d\bm{R}
+  \end{equation*}
+
+  The integrand of The Berry Phase in this form is known as The Berry Connection \cite{Asboth2016}. 
+  
+  \begin{equation*}
+    \mathcal{A} := i \braket{\Psi(\bm{R})|\nabla|\Psi(\bm{R})}
+  \end{equation*}
+
+\section{Properties of The Berry Phase}
+
+Having derived The Berry Phase for the continuous case we can begin analysing some of its various properties. Recalling that The Berry Connection takes on the role of measuring the relative phase difference between quantum states infinitesimally close together a natural first step would be to examine how this quantity behaves under gauge transformations.
+
+  \begin{align*}
+    \ket{\Psi(\bm{R})} &\rightarrow \exp(i \alpha(\bm{R})) \ket{\Psi(\bm{R})}\\
+    \mathcal{A} &\rightarrow \mathcal{A} - \nabla \alpha(\bm{R})\\
+  \end{align*}
+
+  As we would expect this is a non-gauge invariant property. However following the same argumentation laid out in the discrete case, the next natural step is to see if we can find a formulation of The Berry Phase whose integrand is non-gauge invariant. This is achieved by utilizing Stokes Theorem on our expression for The Berry Phase.
+
+  \begin{align*}
+    \gamma(\mathcal{C}) &= \oint \mathcal{A} \cdot d\bm{R}\\
+    & = \sum_{\mu, \nu} \int_{\mathcal{S}(\mathcal{C})} \frac{1}{2} \partial_{\mu} \mathcal{A}_{\nu} - \partial_{\nu} \mathcal{A}_{\mu} dR^{\mu} \wedge dR^{\nu}&
+  \end{align*}
+
+
+The integrand arising in this expression defines a second order tensor known as The Berry Curvature.
+
+  \begin{equation*}
+    \Omega_{\mu, \nu}(\bm{R}) := \partial_{\mu} \mathcal{A}_{\nu} - \partial_{\nu} \mathcal{A}_{\mu}  
+  \end{equation*}
+
+Examining this quantity for gauge-invariance utilizing the transformation rules for the Berry Connection derived above (\ref{}) we retrieve:
+
+
+       \begin{align*}
+         &\ket{\Psi(\bm{R})} \rightarrow \exp(i\alpha(\bm{R}))\ket{\Psi(\bm{R})}\\
+         &\Omega_{\mu, \nu}(\bm{R}) \rightarrow \partial_{\mu} (\mathcal{A}_{\nu}
+         - \partial_{\nu} \alpha(\bm{R})) - \partial_{\nu}(\mathcal{A}_{\mu} -
+         \partial_{\mu} \alpha(\bm{R})) = \Omega_{\mu, \nu}(\bm{R})
+      \end{align*}
+
+confirming the gauge-invariance of this property.
+
+\subsection{Magnetic Analogies}
+
+As so far we have derived a handful of interesting quantities for a general continuous Hilbert Space. The Berry Phase we have shown is a gauge-invariant quantity which ultimately is a geometric property of the closed path over which it is defined in parameter space. The Berry Connection is the non-gauge invariant property which is related to The Berry Phase through an integral of the connection over a closed path. Finally, The Berry Curvature which is related to The Berry Connection through its \textit{cross-product} and gives The Berry Phase through integration of it through any surface bounded by a given path. These relationships have a one-to-one similarity to the classical relationships between another set of three quantities known throughout physics, namely; the magnetic flux ($\Phi$), The magnetic vector potential ($\bm{A}$), and the magnetic flux density field ($\bm{B}$).
+
+
+    \begin{minipage}{0.4\textwidth}
+       \begin{align*}
+         \textbf{Phase:}&\\
+         \gamma(C) &= \oint \bm{\mathcal{A}} \cdot d\bm{R} \\
+                   &= \int_{\mathcal{S}(\mathcal{C})} 
+                      \nabla \times \bm{\mathcal{A}} \cdot d\bm{s}\\
+                   &= \int_{\mathcal{S}(\mathcal{C})} \bm{\Omega} \cdot d\bm{s}
+       \end{align*}
+    \end{minipage}
+    \hspace{0.05\textwidth}
+    \begin{minipage}{0.4\textwidth}
+      \begin{align*}
+        \textbf{Flux:}&\\
+        \Phi(C) &= \oint \bm{A} \cdot d\bm{R} \\
+                &= \int_{\mathcal{S}(\mathcal{C})}
+                   \nabla \times \bm{A} \cdot d\bm{s} \\
+                &= \int_{\mathcal{S}(\mathcal{C})} \bm{B} \cdot d\bm{s}
+      \end{align*}
+    \end{minipage}
+
+\section{The Adiabatic Theorem}\label{sec:adiabatic_theorem}
+
+Up until this point The Berry Phase has been introduced as a purely mathematical construct arising as a result of the geometry of continuous Hilbert Spaces \ref{}. There is of course no fundamental guarantee that there is any physical system that simulates the transformations to a given state which are necessary in order to translate this mathematical construct into a physical quantity. In this section we will discuss a fundamental example where this occurs known as The Adiabatic Theorem.\\
+
+The Adiabatic Theorem is a statement pertaining to the \textit{slow} evolution of quantum systems, though adiabatic behaviour is a concept that extends well beyond the quantum realm. Adiabatic behaviour, in general, is the idea that so long as the environment of any given system changes \textit{slowly} enough (with respect to its internal dynamics) then the system will continue to exhibit the predictable behaviour solely determined by that of the internal system and the instantaneous\footnote{The external \textit{instantaneous} parameters will of course always influence the internal system, the postulate of adiabatic behaviour is that one does not have to keep track of its' \textit{dynamics} in the appropriate limit.} parameter values of the environment \cite{Griffiths2017}. The Adiabatic Theorem tailors this postulate to the quantum realm; defining what exactly it means for the parameters defining a quantum system to evolve sufficiently slowly, and describing how exactly the quantum time evolution is effected by this slow change of parameters in the adiabatic limit. It states:\\
+
+\colorbox{lightgray}{
+\begin{minipage}{0.9\textwidth}
+\noindent\textbf{Theorem:}\\
+\\
+If $H(t)$, $0 \leq t \leq 1$ is  family of Hermitian Hamiltonians and if $E_n(t)$, $E_m(t)$ designate smooth functions of $t$ which are simple eigenvalues of $H(t)$ isolated from the rest of the spectrum, the state of a quantum system \[\Psi(t) = \sum_{n} c_{n}(t)\ket{n(t)}\] given by the time-dependent Schrödinger equation
+  \[i\frac{d}{dt}\Psi_{T} = H(\frac{t}{T})\Psi_{T}(t)\]
+evolves such that the amplitudes of the instantaneous eigenstates composing the wave function are given by:
+    \begin{align*} 
+        c_{n}(t) = c_{n}(0)e^{i\theta_{n}(t)}e^{i\gamma_{n}(t)} &&
+        \theta_{n}(t)  &= -\hbar^{-1} \int_{0}^{t} E_{n}(t^{\prime}) dt^{\prime}\\  
+        && \gamma_{n}(t) &= i\int_{0}^{t} \braket{m(t^{\prime})|\dot{m}(t^{\prime})}
+        dt^{\prime}
+    \end{align*}
+as $T \to \infty$ \cite{Born1928, Berry1984, Simon1983, Sakurai1994}.
+\end{minipage}
+}
+
 \bibliography{Zotero}
 \bibliographystyle{plainnat}
 
