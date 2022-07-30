@@ -253,12 +253,73 @@ evolves such that the amplitudes of the instantaneous eigenstates composing the 
     \begin{align*} 
         c_{n}(t) = c_{n}(0)e^{i\theta_{n}(t)}e^{i\gamma_{n}(t)} &&
         \theta_{n}(t)  &= -\hbar^{-1} \int_{0}^{t} E_{n}(t^{\prime}) dt^{\prime}\\  
-        && \gamma_{n}(t) &= i\int_{0}^{t} \braket{m(t^{\prime})|\dot{m}(t^{\prime})}
+        && \gamma_{n}(t) &= i\int_{0}^{t} \braket{n(t^{\prime})|\dot{n}(t^{\prime})}
         dt^{\prime}
     \end{align*}
 as $T \to \infty$ \cite{Born1928, Berry1984, Simon1983, Sakurai1994}.
 \end{minipage}
 }
+
+The proof of this theorem can be carried out in three parts:\\  
+
+First we can derive a differential equation for the amplitudes of the individual eigenstates utilizing the time-dependent Schrödinger equation
+      \begin{align*}
+        &i\hbar\ket{\dot{\Psi}(t)} = \bm{H}(\frac{t}{T})\ket{\Psi(t)} && \text{Schrödinger equation}&\\
+        &i\hbar \sum_{n} \left[ \dot{c}_{n}(t)\ket{n(t)} + c_{n}(t)\ket{\dot{n}(t)} \right] = \sum_{n} c_{n}(t) E_{n}(t) \ket{n(t)}&& \text{Linear expansion}&\\
+        &i\hbar \dot{c}_{m}(t) + i \hbar \sum_{n} \braket{m(t)|\dot{n}(t)}
+          = c_{m}(t) E_{m}(t)&& \text{Inner product with $\bra{m(t)}$ (*)}
+      \end{align*}
+Then we can utilize the time-independent Schrödinger equation to retrieve an expression that helps to simplify the differential equation above.
+      \begin{align*}
+        &\bm{H}(\frac{t}{T})\Psi(t) = \sum_{n}c_{n}(t)E_{n}(t)\ket{\Psi_{n}(t)} && \text{time-independent S.E.} &\\
+        &\frac{1}{T}\dot{\bm{H}}(t) \ket{n(t)} + \bm{H}(\frac{t}{T}) \ket{\dot{n}(t)} = \dot{E}_{n}(t) \ket{n(t)} + E_{n}(t) \ket{\dot{n}(t)}&& \text{Apply $\partial_{t}$} &\\
+         &\braket{m(t)|\frac{1}{T}\dot{\bm{H}}(t)|n(t)} + E_{m} \braket{m(t)|\dot{n}(t)} 
+         =  E_{n}(t) \braket{m(t)|\dot{n}(t)}&& \text{Inner product with $\bra{m(t)}$}&\\
+         &\braket{m(t)|\dot{n}(t)} 
+         = \frac{\braket{m(t)|\frac{1}{T}\dot{\bm{H}}(t)|n(t)}}{E_{n}(t) 
+         - E_{m}(t)} \quad (m \neq n)&& \text{Rearrange (**)}&\\
+       \end{align*}
+Finally we insert the result from the time-independent equation into those of the time-dependent equation and utilize the assumptions of the theorem to solve the resulting differential equation.
+      \begin{flalign*}
+        &\dot{c}_{m}(t) + \left( \frac{i}{\hbar} E_{m}(t) + \braket{m(t)|\dot{m}(t)} \right) c_{m}(t) =  \sum_{\substack{n\\ n \neq m}} \frac{\braket{m(t)|\frac{1}{T}\dot{\bm{H}}(t)|n(t)}}{E_{m}(t) - E_{n}(t)}&& \text{(**) into (*)}&\\
+        &\dot{c}_{m}(t)  
+        = i \left( - \frac{1}{\hbar}E_{m}(t) + i\braket{m(t)|\dot{m}(t)} \right)
+        c_{m}(t)&& \text{limit as $T \to \infty$} &\\
+        &c_{m}(t) 
+        = c_{m}(0) e^{-i \frac{1}{\hbar} \int_{0}^{t} E_{m}(t^{\prime}) dt^{\prime}}
+        e^{i\int_{0}^{t} i\braket{m(t^{\prime})|\dot{m}(t^{\prime}}dt^{\prime}}&& \text{Solve} &\\ 
+      \end{flalign*}
+
+In the above proof we see that the role of sufficient slowness and the concept of the adiabatic limit in the quantum realm is given by:
+$\sum_{\substack{n\\ n \neq m}} \frac{\braket{m(t)|\frac{1}{T}\dot{\bm{H}}(t)|n(t)}}{E_{m}(t) - E_{n}(t)}$
+In other words the timescale over which one must traverse a given family of Hamiltonians for the adiabatic approximation to hold, must be so long that at all time points the factor given by the sum is negligibly small with respect to the timescale of the evolution. The question remains however where does the geometric phase factor arise?\\
+
+There are two phase factors that arise in this theorem: 
+
+\begin{itemize}
+
+  \item The first phase factor $\theta_{m}(t)  &= -\hbar^{-1} \int_{0}^{t} E_{m}(t^{\prime}) dt^{\prime}$ is simply a result of the evolution of the Eigenenergy of the m-th state; initialization of the state in an eigenstate and solving the time-dependent Schrödinger equation retrieves this factor.
+
+  \item The second phase factor $\gamma_{m}(t) &= i\int_{0}^{t} \braket{m(t^{\prime})|\dot{m}(t^{\prime})} dt^{\prime}$ is less trivial then the \textit{dynamic phase} above and can be shown to be The Berry Phase. This is done by assuming that the time evolution of the Hamiltonian is mediated by a number of control parameters represented by some n-dimensional vector $\bm{R}$ 
+
+  \begin{equation*}
+    \bm{H}(t) = \bm{H}(\bm{R}(t)) \quad \Psi(t) = \Psi(\bm{R}(t))
+  \end{equation*}
+
+  \begin{flalign*}
+    \gamma &=  \int_{0}^{t} i \braket{m(\bm{R}(t))|\dot{m}(\bm{R}(t))} dt&& \text{Specify dependency on $\bm{R}$}&\\
+           &=  \int_{0}^{t}
+    i \braket{m(\bm{R}(t))|\nabla_{\bm{R}}|m(\bm{R}(t))} \dot{\bm{R}}(t) dt && \text{Chain rule}&\\
+           &= \oint i \braket{m(\bm{R})|\nabla_{\bm{R}}|m(\bm{R})}d\bm{R} && \text{Substitution}&\\
+  \end{flalign*}
+
+  Whereby we then recover the same expression for the Berry phase that we derived in Section \ref{ssec:continuous_case}.
+\end{itemize}
+
+\section{Physical Systems}\label{sec:physical_systems}
+\subsection{The Aharonov-Bohm Effect}
+\subsection{Magnetic Moment in a Precessing Field}\label{ssec:magenetic_moment}
+
 
 \bibliography{Zotero}
 \bibliographystyle{plainnat}
