@@ -464,53 +464,41 @@ This paper's significance lay in the fact that it called into question the physi
 \subsubsection{The Electric Effect}\label{sssec:electric_effect}
 
  \begin{figure}[h]
-  \begin{minipage}{0.4\textwidth}
-    \begin{flalign*}
-      &\bm{H(t)} = \bm{H}_{0} + V(t) &\\
-      &\Psi(t) = \Psi_{0} \exp(-i \mathcal{S}) &\\
-      &\mathcal{S} = \int V(t) dt & 
-    \end{flalign*}
-  \end{minipage}
-  \hspace{0.05\textwidth}
-  \begin{minipage}{0.5\textwidth}
-    \includegraphics[width=\textwidth]{electric_effect}
-    \captionof{figure}{Electric effect schematic \cite{Aharonov1959}.}
-    \label{fig:ABE}
-  \end{minipage}
-\end{figure}
+   \centering
+   \includegraphics[width=0.6\textwidth]{electric_effect}
+   \captionof{figure}{Electric effect schematic \cite{Aharonov1959}.}
+   \label{fig:ABE}
+ \end{figure}
  
 The system in which the Electric Aharonov-Bohm effect arises is described by two sufficiently long parallel paths down which a particle beam of electrons can travel. Along each of these paths part of the path is shielded by the effects of an electric field by an idealized \textit{Faraday Cage}. One can consider a beam of electrons at some initial point \textbf{A} being split into two parts and travelling separately along each path. Once the electron beams have arrived at their respective Faraday Cages local time dependent electric fields are turned on. Then before each of the particle beams exits their respective Faraday Cages the local electric fields are turned off. Finally the beams are recombined at a later point \textbf{F} (See: \ref{fig:ABE}).\\
 
-For a quantum mechanical description of this system and for the purposes of this report we can assume that there exists some Hamiltonian which accomplishes the symmetric splitting of the electrons into localized beams with respect to x-axis in the absence of any electric field effects.
+For a quantum mechanical description of this system we can write down the Hamiltonian
 \begin{equation*}
-  \bm{H} \propto \bm{H}_0
+  \bm{H} = \bm{H}_{0} + V(\bm{r},t)
 \end{equation*}
-Assuming the beams are perfectly localized that is that the wave function is non-zero only along the two paths down which each of the beams are directed then we can write the solution of the Schrödinger equation of the system absent of any electric field as:
-\begin{equation*}
-  \Psi_{0}(\bm{r},t)=\Psi_{L0}(x,t) + \Psi_{R0}(x,t)
-\end{equation*}
-Assuming that the beam splitting is localized with respect to the x-axis means that the $\bm{H}_0$ must commute with the operator which results in an x-axis reflection and that the wave function of the system must be an Eigenstate of this operator.
+
+Whereby $\bm{H}_{0}$ describes our system in the absence of any electric fields. We can specify the system further by restricting our space to the symmetrically split free state solutions travelling along the predefined paths through the Faraday Cages(i.e. the particle beams).
 \begin{align*}
-  \hat{\bm{X}} \Psi(x,y) = \Psi(x,-y) && \left[\bm{H}_{0}, \hat{\bm{X}} \right] = 0
+  \Psi_{0}(\bm{r},t)=\Psi_{L0}(x,t) + \Psi_{R0}(x,t) && \hat{\bm{X}}\Psi_{L0/R0} = \Psi_{R0/L0}
 \end{align*}
-The result net conclusion of both of these assumptions is of course that the wave function describing the beam through the right must equal the wave function representing the beam through the left following a reflection, as the total wave function $\Psi_{0}$ must be an eigenstate of the reflection operator $\bm{X}$.
+In this restricted solution space the effect of two localized electric fields along each of the particle beam paths and one global field is indistinguishable. Therefore we can replace the global field operator with two localized operators acting solely along each of the paths which we will label Left ($L$) and Right ($R$).
+\begin{align*}
+  \bm{H} = \bm{H}_{0} + V_{L}(x,t) + V_{R}(x,t) && V|_{L/R} = V_{L/R}
+\end{align*}
+We further restrict the Hilbert Space of our unperturbed Hamiltonian ($\bm{H}_{0}$) to those states who are completely contained within the Faraday Cage during the entire duration that there exists an electric field. For such states we can disregard the spatial dependence of the potential since the potential within the region of the Faraday Cage is constant.
 \begin{equation*}
-  \hat{\bm{X}}\Psi_{L0}(x,t) = \Psi_{R0}(x,t) \; \Leftrightarrow \; \hat{\bm{X}}\Psi_{R0}(x,t) = \Psi_{L0}(x,t)
+  \bm{H} = \bm{H}_{0} + V_{L}(t) + V_{R}(t)
 \end{equation*}
 The effect of the time-dependent local electric field can be modelled by a time-dependent potential term; thus the complete Hamiltonian is given by:
 \begin{equation*}
   \bm{H} = \bm{H}_{0} + V(\bm{r}, t) = \bm{H}_{0} + V_{L}(x,t) + V_{R}(x,t)
 \end{equation*}
-whereby the localization of these fields allows once more the expansion of the potential operator. The solution of the time-dependent Schrödinger equation can be achieved by solving the equation independently for each of the paths where the Hamiltonian becomes
+Under these assumptions the solution of the time-dependent Schrödinger equation can be achieved by solving the equation independently for each of the paths where the Hamiltonian becomes
 \begin{align*}
   \bm{H}|_{L} &= \bm{H}_{0} + V_{L}(x,t)\\
   \bm{H}|_{R} &= \bm{H}_{0} + V_{R}(x,t)
 \end{align*}
-in the top and bottom paths respectively. Finally since the localized electric fields are not switched on until the particles are within the region of the Faraday Cage we can ignore the spatial dependence of the potential when considering this restricted area of the total Hilbert Space of the unperturbed system:
-\begin{align*}
-  V_{L}(x, t) = V_{L}(t) && V_{R}(x,t) = V_{R}(t)
-\end{align*}
-Under these assumptions one can quickly show that the solution of the time-dependent Schrödinger equation along each of the paths is given by
+and thus the solution of the time-dependent Schrödinger equation along each of the paths is given by
 \begin{align*}
   \Psi_{L/R} &= \Psi_{0} \exp(-i \mathcal{S}_{L/R})\\
   \mathcal{S}_{L/R} &= \int_{0}^{t} V_{L/R}(t^{\prime}) dt^{\prime} 
@@ -523,30 +511,38 @@ can be written as
 \begin{equation*}
   \Psi(\bm{r})=\Psi_{L0}(x,t)\exp(-i \mathcal{S}_{L}) + \Psi_{R0}(x,t)\exp(-i \mathcal{S}_{R})
 \end{equation*}
-
 Clearly the phase terms appearing in the solution will result in noticeable interference upon their recombination. Interestingly enough however one can calculate The Berry Phase of this wave function by integrating along one path and back along the other
 \begin{align*}
-  \gamma &= \oint i\braket{\Psi|\nabla_{t,x}|\Psi} \cdot dtdx\\
-         &= \int_{L} i\braket{\Psi_{L}|\nabla_{t,x}|\Psi_{L}} + \int_{R} i\braket{\Psi_{R}|\nabla_{t,x}|\Psi_{R}} \cdot dtdx\\
+  \gamma &= \oint i\braket{\Psi|\nabla_{t,x}|\Psi} \cdot d\bm{r}\\
+         &= \int_{L} i\braket{\Psi_{L}|\nabla_{\bm{r}}|\Psi_{L}} + \int_{R} i\braket{\Psi_{R}|\nabla_{\bm{r}}|\Psi_{R}} \cdot d\bm{r}\\
          &= S_{L} - S_{R}
 \end{align*}
-Thus the electric effect and the resulting interference of the two wave functions can be attributed to the geometry of the resulting Hilbert Space being enforced upon the wave functions travelling along their respective paths.
+Thus the electric effect and the resulting interference of the two wave functions can be attributed to the geometry of the resulting Hilbert Space being enforced upon the wave functions travelling along their respective paths \cite{Aharonov1959}.
 
 \subsubsection{The Magnetic Effect}\label{sssec:magnetic_effect}
-  
-  \begin{minipage}{0.45\textwidth}
-    \begin{align*}
-      &\bm{H} = \frac{\left[ \bm{P} - \frac{e}{c}\bm{A} \right]^{2}}{2m} &\\
-      &\Psi(t) = \Psi_{0} \exp(-i \mathcal{S}) &\\
-      &\mathcal{S} = \int \bm{A} \cdot d\bm{x} &
-    \end{align*}
-  \end{minipage}
-  \hspace{0.05\textwidth}
-  \begin{minipage}{0.5\textwidth}
-    \includegraphics[width=\textwidth]{magnetic_effect}
-    \captionof{figure}{Magnetic effect schematic \cite{Aharonov1959}.}
-    \label{fig:AME}
-  \end{minipage}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.6\textwidth]{magnetic_effect}
+  \captionof{figure}{Magnetic effect schematic \cite{Aharonov1959}.}
+  \label{fig:AME}
+\end{figure}
+
+The system in which the magnetic effect arises is very much similar to that of the electric effect and consists of a split electron beam forced along paths wrapping around a solenoid containing a finite flux, and then recombined at some further point.\\
+
+In general the Hamiltonian of such a system can be written as:
+\begin{equation*}
+  \bm{H} = \frac{\left[ \bm{P} - \frac{e}{c}\bm{A} \right]^{2}}{2m} \\
+\end{equation*}
+After which one can follow the same argumentation followed in the last section (Sec: \ref{sssec:electric_effect}); restricting our Hilbert space to those regions describing symmetric beams, and replacing the global vector potential operator $\bm{A}$ with two local operators acting solely on the two paths $\bm(A)_{L/R}$ in order come up with a solution of the Hamiltonian
+\begin{align*}
+  \Psi(\bm{r})&=\Psi_{L0}(x,t)\exp(-i \mathcal{S}_{L}) + \Psi_{R0}(x,t)\exp(-i \mathcal{S}_{R})\\
+  \mathcal{S}_{L/R} &= \int \bm{A} \cdot d\bm{x} 
+\end{align*}
+Since the form of this solution is fundamentally the same as the form of the solution found in the electric effect, we see that here as well that the phase factor arising in this system is an example of The Berry Phase \cite{Aharonov1959}.
+  \begin{equation*}
+    \gamma = \oint i\braket{\Psi|\nabla_{\bm{r}}|\Psi} \cdot d\bm{r} = S_{L} - S_{R}
+  \end{equation*}
 
 \bibliography{Zotero}
 \bibliographystyle{plainnat}
