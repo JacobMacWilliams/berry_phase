@@ -212,30 +212,6 @@ Examining this quantity for gauge-invariance utilizing the transformation rules 
 
 confirming the gauge-invariance of this property.
 
-\subsection{Magnetic Analogies}
-
-As so far we have derived a handful of interesting quantities for a general continuous Hilbert Space. The Berry Phase we have shown is a gauge-invariant quantity which ultimately is a geometric property of the closed path over which it is defined in parameter space. The Berry Connection is the non-gauge invariant property which is related to The Berry Phase through an integral of the connection over a closed path. Finally, The Berry Curvature which is related to The Berry Connection through its \textit{cross-product} and gives The Berry Phase through integration of it through any surface bounded by a given path. These relationships have a one-to-one similarity to the classical relationships between another set of three quantities known throughout physics, namely; the magnetic flux ($\Phi$), The magnetic vector potential ($\bm{A}$), and the magnetic flux density field ($\bm{B}$).
-
-
-    \begin{minipage}{0.4\textwidth}
-       \begin{align*}
-         \textbf{Phase:}&\\
-         \gamma(C) &= \oint \bm{\mathcal{A}} \cdot d\bm{R} \\
-                   &= \int_{\mathcal{S}(\mathcal{C})} 
-                      \nabla \times \bm{\mathcal{A}} \cdot d\bm{s}\\
-                   &= \int_{\mathcal{S}(\mathcal{C})} \bm{\Omega} \cdot d\bm{s}
-       \end{align*}
-    \end{minipage}
-    \hspace{0.05\textwidth}
-    \begin{minipage}{0.4\textwidth}
-      \begin{align*}
-        \textbf{Flux:}&\\
-        \Phi(C) &= \oint \bm{A} \cdot d\bm{R} \\
-                &= \int_{\mathcal{S}(\mathcal{C})}
-                   \nabla \times \bm{A} \cdot d\bm{s} \\
-                &= \int_{\mathcal{S}(\mathcal{C})} \bm{B} \cdot d\bm{s}
-      \end{align*}
-    \end{minipage}
 
 \section{The Adiabatic Theorem}\label{sec:adiabatic_theorem}
 
@@ -543,6 +519,34 @@ Since the form of this solution is fundamentally the same as the form of the sol
   \begin{equation*}
     \gamma = \oint i\braket{\Psi|\nabla_{\bm{r}}|\Psi} \cdot d\bm{r} = S_{L} - S_{R}
   \end{equation*}
+
+\subsubsection{Magnetic Analogies}
+
+While it is perhaps initially surprising that the Aharonov-Bohm effect is ultimately described by The Berry Phase, this correspondence is simply a result of a nearly one to one correspondence between the relationships tying together The Berry Connection, Berry Curvature and The Berry Phase and those of the magnetic vector potential, magnetic flux density, and the magnetic flux.
+
+    \begin{minipage}{0.4\textwidth}
+       \begin{align*}
+         \textbf{Phase:}&\\
+         \gamma(C) &= \oint \bm{\mathcal{A}} \cdot d\bm{R} \\
+                   &= \int_{\mathcal{S}(\mathcal{C})} 
+                      \nabla \times \bm{\mathcal{A}} \cdot d\bm{s}\\
+                   &= \int_{\mathcal{S}(\mathcal{C})} \bm{\Omega} \cdot d\bm{s}
+       \end{align*}
+    \end{minipage}
+    \hspace{0.05\textwidth}
+    \begin{minipage}{0.4\textwidth}
+      \begin{align*}
+        \textbf{Flux:}&\\
+        \Phi(C) &= \oint \bm{A} \cdot d\bm{R} \\
+                &= \int_{\mathcal{S}(\mathcal{C})}
+                   \nabla \times \bm{A} \cdot d\bm{s} \\
+                &= \int_{\mathcal{S}(\mathcal{C})} \bm{B} \cdot d\bm{s}
+      \end{align*}
+    \end{minipage}\\
+
+What this means is that the effect of the magnetic vector potential and other associated quantities manifests itself in the geometry of the Hilbert Space describing the quantum system.
+
+\section{Conclusion}\label{sec:conclusion}
 
 \bibliography{Zotero}
 \bibliographystyle{plainnat}
