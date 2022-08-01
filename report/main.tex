@@ -298,9 +298,9 @@ There are two phase factors that arise in this theorem:
 
 \begin{itemize}
 
-  \item The first phase factor $\theta_{m}(t)  &= -\hbar^{-1} \int_{0}^{t} E_{m}(t^{\prime}) dt^{\prime}$ is simply a result of the evolution of the Eigenenergy of the m-th state; initialization of the state in an eigenstate and solving the time-dependent Schrödinger equation retrieves this factor.
+  \item The first phase factor $\theta_{m}(t)  = -\hbar^{-1} \int_{0}^{t} E_{m}(t^{\prime}) dt^{\prime}$ is simply a result of the evolution of the Eigenenergy of the m-th state; initialization of the state in an eigenstate and solving the time-dependent Schrödinger equation retrieves this factor.
 
-  \item The second phase factor $\gamma_{m}(t) &= i\int_{0}^{t} \braket{m(t^{\prime})|\dot{m}(t^{\prime})} dt^{\prime}$ is less trivial then the \textit{dynamic phase} above and can be shown to be The Berry Phase. This is done by assuming that the time evolution of the Hamiltonian is mediated by a number of control parameters represented by some n-dimensional vector $\bm{R}$ 
+  \item The second phase factor $\gamma_{m}(t) = i\int_{0}^{t} \braket{m(t^{\prime})|\dot{m}(t^{\prime})} dt^{\prime}$ is less trivial then the \textit{dynamic phase} above and can be shown to be The Berry Phase. This is done by assuming that the time evolution of the Hamiltonian is mediated by a number of control parameters represented by some n-dimensional vector $\bm{R}$ 
 
   \begin{equation*}
     \bm{H}(t) = \bm{H}(\bm{R}(t)) \quad \Psi(t) = \Psi(\bm{R}(t))
@@ -317,9 +317,236 @@ There are two phase factors that arise in this theorem:
 \end{itemize}
 
 \section{Physical Systems}\label{sec:physical_systems}
-\subsection{The Aharonov-Bohm Effect}
 \subsection{Magnetic Moment in a Precessing Field}\label{ssec:magenetic_moment}
 
+While the adiabatic theorem is clearly broadly applicable to a broad range of quantum physical phenomena and thus we can expect to find the geometric phase in a wide range of systems, it is of course prudent to prescribe the theory discussed in the last section (Sec: \ref{sec:adiabatic_theorem}) to a concrete system for which we can then calculate the corresponding geometric phase. To this end we will examine a spin-1/2 system under the influence of a magnetic field, changing in direction though not in magnitude.
+  
+  \begin{figure}
+    \label{fig:spin_system}
+    \includegraphics[width=0.3\textwidth]{b_spin_system_2}
+    \caption{Motion of a 1/2-spin in an adiabatically changing magnetic field.}
+  \end{figure}
+
+A full description of the system is achieved by parametrizing the motion of the magnetic field in spherical coordinates and inserting it into the Hamiltonian describing the system.
+      \begin{align*}
+        \bm{B}(t) = B_{0} \begin{pmatrix} 
+                                          \sin\theta(t)\cos\phi(t)\\
+                                          \sin\theta(t)\sin\phi(t)\\
+                                          \cos\theta(t)
+                           \end{pmatrix}
+        && \bm{H}(t) = \frac{\hbar e}{2m}\bm{B} \cdot \bm{\sigma}
+      \end{align*}
+The eigenstates of this Hamiltonian consist of the well known \textit{spin-up} and \textit{spin-down} wave functions for a magnetic field directed along a arbitrary axis in space. 
+      \begin{align*}
+        \chi_{+}(t) &= \begin{pmatrix} 
+                                      \cos\frac{\theta(t)}{2}\\
+                                      e^{i\phi(t)} \sin \frac{\theta(t)}{2}
+                       \end{pmatrix} 
+                       && E_{+} = \frac{\hbar \omega_{1}}{2}\\
+       \chi_{-}(t) &= \begin{pmatrix} 
+                                     e^{-i\phi(t)}\sin\frac{\theta(t)}{2}\\
+                                     -\cos\frac{\theta(t)}{2}
+                       \end{pmatrix} 
+                       && E_{-} = -\frac{\hbar \omega_{1}}{2}
+      \end{align*}
+
+We thus see that the control parameters defining the evolution of our quantum system are given by the spherical coordinates $r, \theta, \phi$.\\
+
+According to the adiabatic theorem (See:\ref{}) the calculation of the end state of the system is given by simple calculation of the dynamic and geometric phase factors of each eigenstate comprising the state in which our quantum system was initialized. Furthermore, if we evolve the quantum system adiabatically along a closed path then the geometric phase factor will correspond to the gauge-invariant Berry Phase. For this system we can then calculate The Berry Phase for an adiabatically changing system by direct integration of The Berry Connection along the path chosen in the spherical coordinate space:
+  \begin{align*}
+    &\gamma = \int_{\mathcal{C}} i \braket{\chi_{+}|\nabla_{r, \theta, \phi}|\chi_{+}} \cdot
+    d\bm{B}&\\
+    &\braket{\chi_{+}|\nabla_{r, \theta, \phi}|\chi_{+}} = i \frac{\sin^{2}(\theta /
+        2)}{r \sin(\theta)} \hat{\phi}
+  \end{align*}
+Or by integration of the corresponding Berry Curvature over the entire surface enclosed by the path.
+  \begin{align*}
+    &\gamma_{+} = \int_{\mathcal{S}(\mathcal{C})} i \nabla_{r, \theta, \phi} \times
+     \braket{\chi_{+}|\nabla_{r, \theta, \phi}|\chi_{+}} \cdot d\bm{s}&\\
+    &\nabla_{r, \theta, \phi} \times
+      \braket{\chi_{+}|\nabla_{r, \theta, \phi}|\chi_{+}} = \frac{i}{2r^{2}}\hat{r}&\\
+    &\gamma = -\frac{\Omega}{2}
+   \end{align*}
+Doing so gives us a wonderful geometric interpretation of The Berry Phase as simply half of the solid angle enclosed by the path of the magnetic field vector in its evolution. The berry phase as a function of the solid angle has a periodicity of $4\pi$ which must give us the solid angle of the entire space, i.e. the solid angle associated with our system remaining at a singular point in parameter space. This result is of course unsurprising, as the solid angle of a spherical parameter space is a well known constant, but it is nonetheless a good practice in showing how information of the parameter space is embedded within the berry phase.\\
+
+We can now use the result to see how the geometry of the parameter space embeds itself in the adiabatic evolution of a general state. Calculating the berry connection for the \textit{spin-down} state we find:
+\begin{equation*}
+  \braket{\chi_{-}|\nabla_{r, \theta, \phi}|\chi_{-}} = -i \frac{\sin^{2}(\theta /
+  2)}{r \sin(\theta)} \hat{\phi}
+\end{equation*}
+and thus $\gamma_{-} = -\gamma_{+}$. Taking now a general state on the Bloch-sphere and evolving the system along a closed path results in a geometric phase factor for each eigenstate in the superposition. Rearranging then yields the transformation rule for a general state undergoing a cyclic adiabatic transformation:
+
+\begin{align*}
+  \Psi_i &= \cos \frac{\theta}{2} \ket{+} + e^{-i\phi}\sin \frac{\theta}{2}\ket{-}\\
+  \Psi_f &= e^{-i\gamma_{+}}\cos \frac{\theta}{2} \ket{+} + e^{-i(\phi + \gamma_{-})}\sin \frac{\theta}{2}\ket{-}\\
+  \Psi_f &= \cos \frac{\theta}{2} \ket{+} + e^{-i(\phi + \Omega)}\sin \frac{\theta}{2}\ket{-}\\
+  \phi &\rightarrow \phi + \Omega
+\end{align*}
+Here we can see so long as the solid angle enclosed by the solid angle is less then $2\pi$ the resulting state will physically distinguishable from the initial one following the transformation.\\
+
+\subsubsection{Numerical Solution}
+
+While an analytical solution of The Berry Phase of this system is possible over The Berry Curvature, complex paths will of course making defining the region over which to integrate increasingly difficult. For complex paths then, a numerical solution is of increasing necessity. To this end however the formulation of The Berry Phase as a path integral (Eq: \ref{}) is more fitting, as calculation of the solid angle of the path would require the definition and classification of both the interior and exterior points of any given path before calculation could commence utilizing, for example, a Monte-Carlo method.\\
+
+A given path is generated by discretizing the theta ($\theta$) and ($\phi$) coordinates in the regions mapping to the unit sphere following a coordinate transformation back to a cartesian representation
+\begin{equation*}
+  \theta \in [0, \pi]  \qquad  \phi \in [0, 2\pi)
+\end{equation*}
+into a number of discrete points defined by the user. A path is then drawn on this grid starting from the North Pole ($(0,0)$) by successive user input. For each \textit{segment} of a path the user is prompted to choose a direction ($\hat{e}_{\theta}$, $e_{\phi}$) along which they would like to travel as well as for an angular distance ($\theta$, $\phi$) indicating how many degrees the user wishes to travel in the chosen direction. For each segment chosen by the user the program checks whether any previous segment shares a point with the current one, indicating intersections. If an intersection is found the input is refused, and the user is reminded that the path must meet up with the initial point ($(0,0)$) to form a closed path.\\
+
+Following path generation the numerical calculation of The Berry Phase is straightforward, as the path points can be considered to be the points of a curve parametrized with respect to the arc length.
+
+\begin{equation*}
+  \mathcal{C}: [0,1] \rightarrow \mathbb{S}^{2}
+\end{equation*}
+
+Therefore the magnitude of the vector connecting consecutive points can be considered a first-order approximation of the distance between two consecutive points along the path, which corresponds to a first order approximation of the width of the interval between them in continuous parametrization.
+
+\begin{equation*}
+  \forall x, y \in \mathcal{C}([0, 1]), \; x = C(t_x), \; y = C(t_y): \; L(C([t_x, t_y])) = \int_{t_{x}}^{t_{y}}dt \approx ||y - x||
+\end{equation*}
+
+This means that we can use a Riemann-Sum to approximate The Berry Phase
+\begin{equation*}
+  \gamma_{+} = \sum_{i < |P|} \frac{sin^{2}(\theta_{i}/2)}{r_{i}\sin(\theta)}\hat{e}_{\phi_{i}} \cdot (\bm{x}_{i + 1} - \bm{x}_{i})
+\end{equation*}
+and that its not necessary to multiply by the interval width in the parameter space of the parametrization since this information is embedded in the vector $\bm{x}_{i + 1} - \bm{x}_{i}$.\\
+
+We can check the accuracy of the numerical result by taking a simple path such as traversing from the \textit{North Pole} to the \textit{Equator}, then over 90 degrees in the azimuthal direction and back up to the starting position. Here the analytical result is (ignoring the sign).
+\begin{equation*}
+  \gamma = \frac{\pi}{4} \approx 0.78540
+\end{equation*}
+while the numerical result gives
+\begin{equation*}
+  \gamma = 0.79331
+\end{equation*}
+with discretized sphere represented by 256 equally spaced points in the interval $[0, \pi]$ for both the azimuthal and polar directions.
+
+\begin{figure}
+  \begin{minipage}{.48\textwidth}
+    \centering
+    \label{fig:berry_path}
+    \includegraphics[width=\textwidth]{berry_phase_path_90_90_-90_256.png}
+    \caption{Example closed path of a magnetic field vector along the unit sphere.}
+  \end{minipage}%
+  \hspace{2ex}
+  \begin{minipage}{.40\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{berry_phase_random_path.png}
+    \caption{More complicated bath with a berry phase of $\gamma = 0.3609$ according to the numerical method}
+    \label{fig:berry_path_random}
+  \end{minipage}
+\end{figure}
+
+This of course can be improved by increasing the number of points used to represent the sphere and thus decreasing the distance of the points along any given path.
+
+\begin{tabular}{||l|l|l||}
+  \hline
+  \textbf{256-Points} & \textbf{1024-Points} & \textbf{8192-Points}\\
+  \hline
+  0.79331 & 0.78737 & 0.78564\\
+  \hline
+\end{tabular}
+
+\subsection{The Aharonov-Bohm Effect}\label{ssec:aharonov_bohm_effect}
+
+While one of the most prominent examples of The Berry Phase arises during the adiabatic evolution of quantum systems it would be naive consider The Berry Phase an adiabatic effect. Looking back at theoretical discussions which kicked of this report in Section \ref{sec:the_berry_phase} it was clear that The Berry Phase arose due to internal phase relations of quantum states along a given path across the parameter space; the rate at which a given system underwent change did not enter into the discussion. One prominent effect where The Berry Phase arises and is not the result of the adiabatic change of a number of control parameters is the famous Aharonov-Bohm effect.\\
+
+The Aharonov-Bohm effect was introduced in a paper by Yakir Aharonov and David Bohm in 1959. The paper put forward two physical systems showing that the electromagnetic potential was capable of acting upon particles independent of whether or not this corresponded with an observable electric or magnetic field. The two systems put forward came to be known as:
+
+\begin{itemize}
+  \item The electric Aharonov-Bohm effect, for the system demonstrating the physical effects of the electric scalar potential
+  \item The magnetic Aharonov-Bohm effect, for the system demonstrating the physical effects of the magnetic vector potential.
+\end{itemize}
+
+This paper's significance lay in the fact that it called into question the physical relevance of the potentials which up until then had be considered useful mathematical constructs for representing the electric and magnetic fields. If it were to be maintained that the physically relevant quantities remained to be those simply of the E and B-fields then the concept of locality itself would have to be called into question; A field present in one region of space must effect the behaviour of a particle in another region from which it is seemingly expelled. On the other hand if it is maintained that the electromagnetic potential is indeed the fundamental quantity in a physical system then one has to grapple with the fact that exhibits a gauge-degree of freedom is somehow physical. It turns out that both of these effects can be elegantly explained as an example of The Berry Phase which we will show for each of these effects \cite{Aharonov1959}.
+
+\subsubsection{The Electric Effect}\label{sssec:electric_effect}
+
+ \begin{figure}[h]
+  \begin{minipage}{0.4\textwidth}
+    \begin{flalign*}
+      &\bm{H(t)} = \bm{H}_{0} + V(t) &\\
+      &\Psi(t) = \Psi_{0} \exp(-i \mathcal{S}) &\\
+      &\mathcal{S} = \int V(t) dt & 
+    \end{flalign*}
+  \end{minipage}
+  \hspace{0.05\textwidth}
+  \begin{minipage}{0.5\textwidth}
+    \includegraphics[width=\textwidth]{electric_effect}
+    \captionof{figure}{Electric effect schematic \cite{Aharonov1959}.}
+    \label{fig:ABE}
+  \end{minipage}
+\end{figure}
+ 
+The system in which the Electric Aharonov-Bohm effect arises is described by two sufficiently long parallel paths down which a particle beam of electrons can travel. Along each of these paths part of the path is shielded by the effects of an electric field by an idealized \textit{Faraday Cage}. One can consider a beam of electrons at some initial point \textbf{A} being split into two parts and travelling separately along each path. Once the electron beams have arrived at their respective Faraday Cages local time dependent electric fields are turned on. Then before each of the particle beams exits their respective Faraday Cages the local electric fields are turned off. Finally the beams are recombined at a later point \textbf{F} (See: \ref{fig:ABE}).\\
+
+For a quantum mechanical description of this system and for the purposes of this report we can assume that there exists some Hamiltonian which accomplishes the symmetric splitting of the electrons into localized beams with respect to x-axis in the absence of any electric field effects.
+\begin{equation*}
+  \bm{H} \propto \bm{H}_0
+\end{equation*}
+Assuming the beams are perfectly localized that is that the wave function is non-zero only along the two paths down which each of the beams are directed then we can write the solution of the Schrödinger equation of the system absent of any electric field as:
+\begin{equation*}
+  \Psi_{0}(\bm{r},t)=\Psi_{L0}(x,t) + \Psi_{R0}(x,t)
+\end{equation*}
+Assuming that the beam splitting is localized with respect to the x-axis means that the $\bm{H}_0$ must commute with the operator which results in an x-axis reflection and that the wave function of the system must be an Eigenstate of this operator.
+\begin{align*}
+  \hat{\bm{X}} \Psi(x,y) = \Psi(x,-y) && \left[\bm{H}_{0}, \hat{\bm{X}} \right] = 0
+\end{align*}
+The result net conclusion of both of these assumptions is of course that the wave function describing the beam through the right must equal the wave function representing the beam through the left following a reflection, as the total wave function $\Psi_{0}$ must be an eigenstate of the reflection operator $\bm{X}$.
+\begin{equation*}
+  \hat{\bm{X}}\Psi_{L0}(x,t) = \Psi_{R0}(x,t) \; \Leftrightarrow \; \hat{\bm{X}}\Psi_{R0}(x,t) = \Psi_{L0}(x,t)
+\end{equation*}
+The effect of the time-dependent local electric field can be modelled by a time-dependent potential term; thus the complete Hamiltonian is given by:
+\begin{equation*}
+  \bm{H} = \bm{H}_{0} + V(\bm{r}, t) = \bm{H}_{0} + V_{L}(x,t) + V_{R}(x,t)
+\end{equation*}
+whereby the localization of these fields allows once more the expansion of the potential operator. The solution of the time-dependent Schrödinger equation can be achieved by solving the equation independently for each of the paths where the Hamiltonian becomes
+\begin{align*}
+  \bm{H}|_{L} &= \bm{H}_{0} + V_{L}(x,t)\\
+  \bm{H}|_{R} &= \bm{H}_{0} + V_{R}(x,t)
+\end{align*}
+in the top and bottom paths respectively. Finally since the localized electric fields are not switched on until the particles are within the region of the Faraday Cage we can ignore the spatial dependence of the potential when considering this restricted area of the total Hilbert Space of the unperturbed system:
+\begin{align*}
+  V_{L}(x, t) = V_{L}(t) && V_{R}(x,t) = V_{R}(t)
+\end{align*}
+Under these assumptions one can quickly show that the solution of the time-dependent Schrödinger equation along each of the paths is given by
+\begin{align*}
+  \Psi_{L/R} &= \Psi_{0} \exp(-i \mathcal{S}_{L/R})\\
+  \mathcal{S}_{L/R} &= \int_{0}^{t} V_{L/R}(t^{\prime}) dt^{\prime} 
+\end{align*}
+that is the solution in the absence of any electric field ($\Psi_{0}$) times a phase factor given by the integral of the time dependent electric potential within the cage. It follows then that the quantum state of the entire system described then by the Hamiltonian
+  \begin{equation*}
+    \bm{H}(\bm{r}, t) = \bm{H}_{0} + V(\bm{r}, t)
+  \end{equation*}
+can be written as
+\begin{equation*}
+  \Psi(\bm{r})=\Psi_{L0}(x,t)\exp(-i \mathcal{S}_{L}) + \Psi_{R0}(x,t)\exp(-i \mathcal{S}_{R})
+\end{equation*}
+
+Clearly the phase terms appearing in the solution will result in noticeable interference upon their recombination. Interestingly enough however one can calculate The Berry Phase of this wave function by integrating along one path and back along the other
+\begin{align*}
+  \gamma &= \oint i\braket{\Psi|\nabla_{t,x}|\Psi} \cdot dtdx\\
+         &= \int_{L} i\braket{\Psi_{L}|\nabla_{t,x}|\Psi_{L}} + \int_{R} i\braket{\Psi_{R}|\nabla_{t,x}|\Psi_{R}} \cdot dtdx\\
+         &= S_{L} - S_{R}
+\end{align*}
+Thus the electric effect and the resulting interference of the two wave functions can be attributed to the geometry of the resulting Hilbert Space being enforced upon the wave functions travelling along their respective paths.
+
+\subsubsection{The Magnetic Effect}\label{sssec:magnetic_effect}
+  
+  \begin{minipage}{0.45\textwidth}
+    \begin{align*}
+      &\bm{H} = \frac{\left[ \bm{P} - \frac{e}{c}\bm{A} \right]^{2}}{2m} &\\
+      &\Psi(t) = \Psi_{0} \exp(-i \mathcal{S}) &\\
+      &\mathcal{S} = \int \bm{A} \cdot d\bm{x} &
+    \end{align*}
+  \end{minipage}
+  \hspace{0.05\textwidth}
+  \begin{minipage}{0.5\textwidth}
+    \includegraphics[width=\textwidth]{magnetic_effect}
+    \captionof{figure}{Magnetic effect schematic \cite{Aharonov1959}.}
+    \label{fig:AME}
+  \end{minipage}
 
 \bibliography{Zotero}
 \bibliographystyle{plainnat}
